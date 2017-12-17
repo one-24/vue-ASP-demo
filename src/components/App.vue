@@ -40,6 +40,7 @@
     }
     #container {
         padding-top: 40px;
+        padding-bottom: 50px;
     }
     .v-enter{
         opacity: 0;

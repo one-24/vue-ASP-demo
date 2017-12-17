@@ -1,17 +1,13 @@
 import Vue from "vue"
 
-// 引入 mint-ui
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-Vue.use(MintUI)
-//头部 header 区域
-import { Header } from 'mint-ui';
-Vue.component(Header.name, Header);
-// 轮播图
-import { Swipe, SwipeItem } from 'mint-ui';
 
+//引入 mintui 组件
+import { Header,Swipe,SwipeItem,Toast,Button } from 'mint-ui';
+import 'mint-ui/lib/style.css'
+Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
 
 // 引入 mui 
 import "./lib/mui/css/mui.css"
@@ -22,23 +18,16 @@ import VueResource from "vue-resource"
 Vue.use(VueResource)
 // 引入主模板 App 
 import App from "./components/App.vue"
-//引入 components
-import homeComponent from "./components/contents/homeComponent.vue"
-import memberComponent from "./components/contents/memberComponent.vue"
-import shopcarComponent from "./components/contents/shopcarComponent.vue"
-import searchComponent from "./components/contents/searchComponent.vue"
-// 引入路由
-import VueRouter from "vue-router"
-Vue.use(VueRouter)
-var router = new VueRouter({
-    routes:[
-        {path:"/",redirect:"/home"},
-        {path:"/home",component:homeComponent},
-        {path:"/member",component:memberComponent},
-        {path:"/shopcar",component:shopcarComponent},
-        {path:"/search",component:searchComponent}
-    ],
-    linkActiveClass:"mui-active"
+// 引入路由模块
+import router from "./router.js"
+//全局配置 http 请求根路径
+Vue.http.options.root = 'http://vue.studyit.io';
+Vue.http.options.emulateJSON = true;
+//引入 moment 时间格式处理插件
+import moment from "moment"
+//配置全局时间过滤器
+Vue.filter("dateFormat",function(data,dateformat="YYYY-MM-DD HH-mm-ss"){
+    return moment(data).format(dateformat)
 })
 
 var vm = new Vue({
