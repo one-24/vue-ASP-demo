@@ -54,6 +54,7 @@ export default {
                     content:this.BBContent
                 }
                 this.commentList.unshift(commentInfo)
+                this.BBContent = ""
             }else{
                 Toast("提交失败")
             }
@@ -72,6 +73,7 @@ export default {
 
 <style lang="less" scoped>
     .comment{
+        padding:6px;
         textarea {
             margin: 0;
             font-size: 14px;
